@@ -4,7 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
     <title>Document</title>
+    <script>
+        const firebase = require("firebase");
+        // Required for side-effects
+        require("firebase/firestore");
+
+        // Initialize Cloud Firestore through Firebase
+        firebase.initializeApp({
+            apiKey: "AIzaSyB4oVJ4qORj2jL-M2uDJY6_lJvpLcNp_xQ",
+            authDomain: "phiot-23a.firebaseapp.com",
+            databaseURL: "https://phiot-23a.firebaseio.com",
+            projectId: "phiot-23a",
+            storageBucket: "phiot-23a.appspot.com",
+            messagingSenderId: "828816799668",
+            appId: "1:828816799668:web:3bbdad7acb04cf58"
+          });
+
+
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyB4oVJ4qORj2jL-M2uDJY6_lJvpLcNp_xQ",
+  authDomain: "phiot-23a.firebaseapp.com",
+  databaseURL: "https://phiot-23a.firebaseio.com",
+  projectId: "phiot-23a",
+  storageBucket: "phiot-23a.appspot.com",
+  messagingSenderId: "828816799668",
+  appId: "1:828816799668:web:3bbdad7acb04cf58"
+};
+
+
+
+        var db = firebase.firestore();
+        var data = db.collection("Greenhouse")
+	.orderBy("datetime", "desc");
+
+console.log(data);
+
+    </script>
 </head>
 <body>
     Hello World!

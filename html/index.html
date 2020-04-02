@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>2</title>
+    <title>3</title>
     
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -34,6 +34,12 @@
         var data = db.collection("Greenhouse").orderBy("datetime", "desc");
 
         console.log(data);
+
+
+        var ref = firebase.database().ref();                           
+        ref.on("value", function(snapshot){
+            output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+        });
 
     </script>
 </head>

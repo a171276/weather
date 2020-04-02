@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
-    <title>1</title>
-    <script>
 
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
 
-        var firebaseConfig = {
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-            apiKey: "AIzaSyB4oVJ4qORj2jL-M2uDJY6_lJvpLcNp_xQ",
-            authDomain: "phiot-23a.firebaseapp.com",
-            databaseURL: "https://phiot-23a.firebaseio.com",
-            //projectId: "phiot-23a",
-            storageBucket: "phiot-23a.appspot.com",
-            //messagingSenderId: "828816799668",
-            //appId: "1:828816799668:web:3bbdad7acb04cf58"
-
-        };
-        firebase.initializeApp(firebaseConfig);
-
-        // Get a reference to the storage service, which is used to create references in your storage bucket
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyB4oVJ4qORj2jL-M2uDJY6_lJvpLcNp_xQ",
+    authDomain: "phiot-23a.firebaseapp.com",
+    databaseURL: "https://phiot-23a.firebaseio.com",
+    projectId: "phiot-23a",
+    storageBucket: "phiot-23a.appspot.com",
+    messagingSenderId: "828816799668",
+    appId: "1:828816799668:web:3bbdad7acb04cf58"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+    
+    
+    
+    // Get a reference to the storage service, which is used to create references in your storage bucket
         var storage = firebase.storage();
         var db = firebase.firestore();
         var data = db.collection("Greenhouse").orderBy("datetime", "desc");

@@ -4,44 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>4</title>
-    
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <title>6</title>
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
-
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
+    <script src="firebaseConfig.js"></script>
 <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyB4oVJ4qORj2jL-M2uDJY6_lJvpLcNp_xQ",
-    authDomain: "phiot-23a.firebaseapp.com",
-    databaseURL: "https://phiot-23a.firebaseio.com",
-    projectId: "phiot-23a",
-    storageBucket: "phiot-23a.appspot.com",
-    messagingSenderId: "828816799668",
-    appId: "1:828816799668:web:3bbdad7acb04cf58"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-    
-    
-    
-    // Get a reference to the storage service, which is used to create references in your storage bucket
-        var storage = firebase.storage();
-        var db = firebase.firestore();
-        var data = db.collection("Greenhouse").orderBy("datetime", "desc");
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
 
-        console.log(data);
-
-
-        var ref = firebase.database().ref();                           
-        ref.on("value", function(snapshot){
-            output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+    db.collection("readings").doc("TempsAndHums").collection("Greenhouse").orderBy("datetime", "desc").limit(3)
+    .onSnapshot(function(querySnapshot) {
+        var readings = [];
+        querySnapshot.forEach(function(doc) {
+            readings.push(doc.data());
         });
+        console.log(readings);
+    });
+
 
     </script>
 </head>

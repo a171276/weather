@@ -1,0 +1,43 @@
+body {
+    background-color: teal;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.temphum {
+    font-size: 3rem;
+}
+
+.datetime {
+    font-size: 2rem;
+}
+
+#greenhouse {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+}
+
+.holder {
+    margin: 0.3rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+    flex: auto;
+    border-radius: 0.5rem;
+}
+
+.n1 {
+    color: #FFFFFF;
+    background-color: #998080;
+}
+
+.n2 {
+    color: #CC8080;
+    background-color: #668080;
+}
+
+.n3 {
+    color: #998080;
+    background-color: #338080;
+}

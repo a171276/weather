@@ -4,105 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>7</title>
+    <title>Temps and Hums</title>
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="firebaseConfig.js"></script>
-<script>
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.firestore();
+    <script src="script.js"></script>
 
-    db.collection("readings").doc("TempsAndHums").collection("Greenhouse").orderBy("datetime", "desc").limit(3)
-    .onSnapshot(function(data) {
-        var readings = [];
-        data.forEach(function(doc) {
-            readings.push(doc.data());
-        });
-        render("greenhouse", readings, "Greenhouse")
-        //console.log(readings);
-    });
-
-    db.collection("readings").doc("TempsAndHums").collection("Outside").orderBy("datetime", "desc").limit(3)
-    .onSnapshot(function(data) {
-        var readings = [];
-        data.forEach(function(doc) {
-            readings.push(doc.data());
-        });
-        render("outside", readings, "Outside")
-        //console.log(readings);
-    });
-
-    let render = function(id, col, name) {
-        var n = 0;
-        var ret = "";
-        ret +=  "<h1>"+name+"</h1>";
-        col.forEach(e => {
-            n++;
-            d = moment(e.datetime).format("dddd MMMM Do"); 
-            t = e.datetime.substr(11,5);
-            ret += "<div class='holder n"+n+"'>";
-            ret += "<span class='temphum'>";
-            ret += " 🌡 " + e.temperature + "°  ☔ " + e.humidity + "%";
-            ret += "</span><br />";
-            ret += "<span class='datetime'>";
-            ret += " ⌚ " + t + " 📆 " + d;
-            ret += "</span>";
-            ret += "</div>";
-        });
-        document.getElementById(id).innerHTML = ret;
-    }
-
-    </script>
-    <style>
-        body {
-            background-color: teal;
-            color: white;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        .temphum {
-            font-size: 3rem;
-        }
-
-        .datetime {
-            font-size: 2rem;
-        }
-
-        #greenhouse {
-            width: 100%;
-            display: flex;
-            flex-flow: row wrap;
-            flex-direction: column;
-        }
-
-        .holder {
-            margin: 0.3rem;
-            padding: 0.3rem;
-            font-size: 1rem;
-            flex: auto;
-            border-radius: 0.5rem;
-        }
-
-        .n1 {
-            color: #FFFFFF;
-            background-color: #998080;
-        }
-
-        .n2 {
-            color: #CC8080;
-            background-color: #668080;
-        }
-
-        .n3 {
-            color: #998080;
-            background-color: #338080;
-        }
-
-
-
-    </style>
 </head>
 <body>
     <div id="greenhouse"></div>

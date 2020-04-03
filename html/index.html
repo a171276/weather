@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="firebaseConfig.js"></script>
 <script>
     firebase.initializeApp(firebaseConfig);
@@ -19,7 +20,8 @@
         data.forEach(function(doc) {
             readings.push(doc.data());
         });
-        console.log(readings);
+        render("greenhouse", readings, "Greenhouse")
+        //console.log(readings);
     });
 
     db.collection("readings").doc("TempsAndHums").collection("Outside").orderBy("datetime", "desc").limit(3)
@@ -28,16 +30,17 @@
         data.forEach(function(doc) {
             readings.push(doc.data());
         });
-        render("greenhouse", readings)
-        console.log(readings);
+        render("outside", readings, "Outside")
+        //console.log(readings);
     });
 
-    let render = function(id, col) {
-        var ret = "";
+    let render = function(id, col, name) {
         var n = 0;
+        var ret = "";
+        ret +=  "<h1>"+name+"</h1>";
         col.forEach(e => {
             n++;
-            d = e.datetime.substr(0,10);
+            d = moment(e.datetime).format("dddd MMMM Do"); 
             t = e.datetime.substr(11,5);
             ret += "<div class='holder n"+n+"'>";
             ret += "<span class='temphum'>";
@@ -47,7 +50,6 @@
             ret += " ⌚ " + t + " 📆 " + d;
             ret += "</span>";
             ret += "</div>";
-            alert(ret);
         });
         document.getElementById(id).innerHTML = ret;
     }
@@ -72,6 +74,7 @@
             width: 100%;
             display: flex;
             flex-flow: row wrap;
+            flex-direction: column;
         }
 
         .holder {
@@ -79,31 +82,31 @@
             padding: 0.3rem;
             font-size: 1rem;
             flex: auto;
+            border-radius: 0.5rem;
         }
 
         .n1 {
-            color: red;
-            background-color: #bbb;
+            color: #FFFFFF;
+            background-color: #998080;
         }
 
         .n2 {
-            color: green;
-            background-color: #777;
+            color: #CC8080;
+            background-color: #668080;
         }
 
         .n3 {
-            color: blue;
-            background-color: #333;
+            color: #998080;
+            background-color: #338080;
         }
 
-        #greenhouse > div {
-        }
 
 
     </style>
 </head>
 <body>
     <div id="greenhouse"></div>
+    <hr />
     <div id="outside"></div>
 </body>
 </html>

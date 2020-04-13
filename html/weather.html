@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="locations.js"></script>
+    <script src="wx.js"></script>
+    <script src="weatherTypes.js"></script>
+    <script src="visibility.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <script>
+    /*
+    TODO: 1. List, select, locations
+    Table
+    09:00  12deg    Mostly fine
+    12:00
+    15:00
+
+    */
+
+let fields = "D F G H Pp S T V W U";
+
+document.addEventListener("DOMContentLoaded", function(){
+    buildSelectLocations();
+    getDataForLocation();
+});
+
+let test = function() {
+    getDataForLocation();
+}
+
+let buildSelectLocations = function() {
+    let ret = '<select onchange="getDataForLocation();" id="location">';
+    for (let [key, value] of locations) {
+        ret += `<option value="${key}">${value}</option>`;
+    }
+    ret += '</select>';
+    document.getElementById("holderForSelectLocation").innerHTML = ret;
+}
+
+let getDataForLocation = function() {
+    let location = document.getElementById("location").value;
+    let url = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${location}?res=3hourly&key=d5df697d-3ed8-4efd-94ed-c67283bb23ee`;
+    url = 'data.json';
+    fetch(url)
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        let ret = "";
+        ret += '<table>';
+        //let wx = data.SiteRep.Wx.Param;
+        let dv = data.SiteRep.DV;
+        ret += '<tr>'; 
+        ret += '<th>Time</th>';
+        fields.split(' ').forEach(v => {
+            ret += `<th title="${wx.get(v).$} / ${wx.get(v).units}">${wx.get(v).name}</th>`; // name, units, $
+        });
+        ret += '</tr>'; 
+
+        // And now the values
+        dv.Location.Period.forEach(date => {
+            // The DAYS/DATES
+            ret += `<tr><td colspan="11">${date.value}</td></tr>`;
+            date.Rep.forEach(d => {
+                ret += `<tr><td>${d.$}</td>`;
+                //ret += ;
+                fields.split(' ').forEach(v => {
+                    ret += '<td>';
+                    switch(v) {
+                        case 'W':
+                            ret += weatherTypes.get(d[v]);
+                            break;
+                        case 'V':
+                            ret += visibility.get(d[v]);
+                            break;
+                        default:
+                            ret += d[v];
+                            break;
+                    }
+                    ret += '</td>';
+                });
+                ret += '</tr>';
+            });
+            console.log(date.Rep);
+            //date.forEach()
+        });
+
+        ret += '</table>';
+        document.getElementById("one").innerHTML = ret;
+        console.log(data);
+    });
+}
+
+    </script>
+    <div id="holderForSelectLocation"></div>
+    <div id="one"></div>
+    <button onclick="test();">Test</button>
+</body>

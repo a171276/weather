@@ -31,7 +31,7 @@ let render = function(id, col, name) {
         t = e.datetime.substr(11,5);
         ret += "<div class='holder n"+n+"'>";
         ret += "<span class='temphum'>";
-        ret += " 🌡 " + e.temperature + "°  ☔ " + e.humidity + "%";
+        ret += " 🌡 " + e.temperature + "°  ⚖ " + e.humidity + "%";
         ret += "</span><br />";
         ret += "<span class='datetime'>";
         ret += " ⌚ " + t + " 📆 " + d;

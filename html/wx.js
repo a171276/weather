@@ -1,11 +1,11 @@
 let wx = new Map();
-wx.set("F", {"name":"F","units":"C","$":"Feels Like Temperature"});
-wx.set("G", {"name":"G","units":"mph","$":"Wind Gust"});
-wx.set("H", {"name":"H","units":"%","$":"Screen Relative Humidity"});
+wx.set("F", {"name":"F","units":"in °Celsius","$":"Feels Like Temperature"});
+wx.set("G", {"name":"G","units":"in mph","$":"Wind Gust"});
+wx.set("H", {"name":"H","units":"percentage","$":"Screen Relative Humidity"});
 wx.set("T", {"name":"T","units":"C","$":"Temperature"});
-wx.set("V", {"name":"V","units":"","$":"Visibility"});
+wx.set("V", {"name":"V","units":"Km","$":"Visibility"});
 wx.set("D", {"name":"D","units":"compass","$":"Wind Direction"});
 wx.set("S", {"name":"S","units":"mph","$":"Wind Speed"});
-wx.set("U", {"name":"U","units":"","$":"Max UV Index"});
-wx.set("W", {"name":"W","units":"","$":"Weather Type"});
-wx.set("Pp", {"name":"Pp","units":"%","$":"Precipitation Probability"});
+wx.set("U", {"name":"U","units":"scale 0-12","$":"Max UV Index"});
+wx.set("W", {"name":"W","units":"description","$":"Weather Type"});
+wx.set("Pp", {"name":"Pp","units":"percentage chance","$":"Precipitation Probability"});

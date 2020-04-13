@@ -12,6 +12,22 @@ body {
     font-size: 1.7rem;
 }
 
+.w {
+    font-family:'weathericons';
+}
+
+.w-d  { background-color: green; }
+.w-f  { background-color: green; }
+.w-g  { background-color: green; }
+.w-h  { background-color: green; }
+.w-pp { background-color: green; }
+.w-s  { background-color: green; }
+.w-w  { background-color: green; }
+.w-t  { background-color: green; }
+.w-v  { background-color: green; }
+.w-u  { background-color: green; }
+.w-d  { background-color: green; }
+
 #greenhouse {
     width: 100%;
     display: flex;

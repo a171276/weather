@@ -42,7 +42,7 @@ let buildSelectLocations = function() {
 let getDataForLocation = function() {
     let location = document.getElementById("location").value;
     let apiKey = 'd5df697d-3ed8-4efd-94ed-c67283bb23ee';
-    let url = `https://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${location}?res=3hourly&key=${apiKey}`;
+    let url = `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/${location}?res=3hourly&key=${apiKey}`;
     //url = 'data.json';
     fetch(url)
     .then((response) => {

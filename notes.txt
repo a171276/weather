@@ -15,4 +15,5 @@ IMPORTANT NOTES:
 
 
 
-wget 
+wget  http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?key=d5df697d-3ed8-4efd-94ed-c67283bb23ee
+

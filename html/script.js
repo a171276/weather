@@ -27,7 +27,7 @@ let render = function(id, col, name) {
     ret +=  "<h1>"+name+"</h1>";
     col.forEach(e => {
         n++;
-        d = moment(e.datetime).format("dddd MMMM Do"); 
+        d = moment(e.datetime).format("ddd Do MMM"); 
         t = e.datetime.substr(11,5);
         ret += "<div class='holder n"+n+"'>";
         ret += "<span class='temphum'>";

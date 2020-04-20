@@ -19,7 +19,7 @@ const credentials = {
 	ca: ca
 };
 
-app.get('/wtf', function (req, res) {
+app.get('/updateWeatherFeeds', function (req, res) {
     let locations = ['352605', '324166', '322954', '353370', '324249', '354677'];
     let apiKey = 'd5df697d-3ed8-4efd-94ed-c67283bb23ee';
    
